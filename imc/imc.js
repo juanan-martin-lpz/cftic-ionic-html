@@ -104,11 +104,19 @@ function crearPuntoImagen(imc) {
 const obtenerIMC = (h, p) => p / (h * h);
 
 // Obtiene el texto correspodiente al valor del imc
-const obtenerIMCTexto = (imc) => greater(31, imc) ? "Obeso" : result ||
-    between(25, 31, imc) ? "Sobrepeso" : result ||
-    between(18, 25, imc) ? "Ideal" : result ||
-    between(16, 18, imc) ? "Delgado" : result ||
-    lesser(16, imc) ? "Desnutrido" : result;
+function obtenerIMCTexto(imc) {
+
+    let result = "";
+
+    result = greater(31, imc) ? "Obeso" : result;
+    result = between(25, 31, imc) ? "Sobrepeso" : result;
+    result = between(18, 25, imc) ? "Ideal" : result;
+    result = between(16, 18, imc) ? "Delgado" : result;
+    result = lesser(16, imc) ? "Desnutrido" : result;
+
+    return result;
+}
+
 
 
 
