@@ -44,6 +44,7 @@ const obtenerIMCTextoSpan = () => document.getElementById("imc-texto");
 const obtenerCirculo = () => document.getElementById("circulo");
 const obtenerImagen = () => document.getElementById("imagen");
 
+// Elimina el circulo de la imagen, si existe
 function resetImagen() {
     let c = obtenerCirculo();
 
@@ -52,6 +53,7 @@ function resetImagen() {
     }
 }
 
+// Resetea textos del resultado
 function resetTextos() {
     let imc = obtenerIMCSpan();
     let imc_texto = obtenerIMCTextoSpan();
@@ -62,44 +64,25 @@ function resetTextos() {
     }
 }
 
+// Resetea el UI
 function resetUI() {
     resetTextos();
     resetImagen();
 }
 
-function hideResults() {
-    let r = obtenerPanelResultados();
-    r.setAttribute("display", "none");
-}
-
-function showResults() {
-    let r = obtenerPanelResultados();
-    r.setAttribute("display", "block");
-}
-
+// Coloca el valor de imc en el texto correspondiente
 function setIMC(imc) {
     let imcspan = obtenerIMCSpan();
     imcspan.innerHTML = imc.toFixed(2);
 }
 
+// Coloca el valor del imc texto en el texto correspondiente
 function setIMCText(imc_texto) {
     let imcspan = obtenerIMCTextoSpan();
     imcspan.innerHTML = imc_texto;
 }
 
-function puntoIMCImagen(imc) {
-
-    let clase = "";
-
-    clase = greater(31, imc) ? "quinto" : clase;
-    clase = between(25, 31, imc) ? "cuarto" : clase;
-    clase = between(18, 25, imc) ? "tercero" : clase;
-    clase = between(16, 18, imc) ? "segundo" : clase;
-    clase = lesser(16, imc) ? "primero" : clase;
-
-    return "punto " + clase;
-}
-
+// Crea el punto indicativo de l imagen 
 function crearPuntoImagen(imc) {
 
     let clases = puntoIMCImagen(imc);
@@ -116,21 +99,32 @@ function crearPuntoImagen(imc) {
 }
 
 // Calculos
+
+// Calcula el valor del imc
 const obtenerIMC = (h, p) => p / (h * h);
 
-function obtenerIMCTexto(imc) {
+// Obtiene el texto correspodiente al valor del imc
+const obtenerIMCTexto = (imc) => greater(31, imc) ? "Obeso" : result ||
+    between(25, 31, imc) ? "Sobrepeso" : result ||
+    between(18, 25, imc) ? "Ideal" : result ||
+    between(16, 18, imc) ? "Delgado" : result ||
+    lesser(16, imc) ? "Desnutrido" : result;
 
-    let result = "";
 
-    result = greater(31, imc) ? "Obeso" : result;
-    result = between(25, 31, imc) ? "Sobrepeso" : result;
-    result = between(18, 25, imc) ? "Ideal" : result;
-    result = between(16, 18, imc) ? "Delgado" : result;
-    result = lesser(16, imc) ? "Desnutrido" : result;
 
-    return result;
+// Obtiene las clases css correspondientes al valor del imc
+function puntoIMCImagen(imc) {
+
+    let clase = "";
+
+    clase = greater(31, imc) ? "quinto" : clase;
+    clase = between(25, 31, imc) ? "cuarto" : clase;
+    clase = between(18, 25, imc) ? "tercero" : clase;
+    clase = between(16, 18, imc) ? "segundo" : clase;
+    clase = lesser(16, imc) ? "primero" : clase;
+
+    return "punto " + clase;
 }
-
 
 
 // Funcion principal
