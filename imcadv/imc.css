@@ -104,6 +104,14 @@ img {
     grid-template-columns: 50% 50%;
 }
 
+.boton {
+    width: 5rem;
+    height: 2rem;
+    background-color: cornflowerblue;
+    border: 1px solid cornflowerblue;
+    border-radius: 5px;
+}
+
 .column {
     text-align: center;
     border-bottom: 1px black solid;
@@ -116,4 +124,9 @@ img {
 
 .col-result {
     grid-column: 2;
+}
+
+.panel {
+    grid-column-start: 1;
+    grid-column-end: 2;
 }
