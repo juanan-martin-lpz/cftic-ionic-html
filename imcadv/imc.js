@@ -54,6 +54,7 @@ const obtenerImagen = () => document.getElementById("imagen");
 const obtenerLista = () => document.getElementById("lista");
 const obtenerPeso = () => document.getElementById("peso");
 const obtenerAltura = () => document.getElementById("altura");
+const form = () => document.getElementById("form");
 
 // Elimina el circulo de la imagen, si existe
 function resetImagen() {
@@ -88,9 +89,8 @@ function resetValues() {
 
 // Resetea el UI
 function resetUI() {
-    resetValues();
     resetTextos();
-    //resetImagen();
+    resetImagen();
 }
 
 // Coloca el valor de imc en el texto correspondiente
@@ -181,6 +181,8 @@ function calcularIMC(e) {
 
     e.preventDefault();
 
+    resetUI();
+
     let h = altura();
     let p = peso();
 
@@ -204,7 +206,8 @@ function calcularIMC(e) {
     historia.push({ imc, imc_texto });
     aniadirListaUI({ imc, imc_texto });
 
-    resetUI();
+    form().reset();
+    obtenerPeso().focus();
 
 }
 
@@ -217,7 +220,7 @@ function limpiarLista(e) {
     let lista = obtenerLista();
     lista.textContent = "";
 
-    resetImagen();
+    resetValues();
     resetUI();
 
 }
