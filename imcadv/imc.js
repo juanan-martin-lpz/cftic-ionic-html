@@ -51,6 +51,9 @@ const obtenerIMCSpan = () => document.getElementById("imc");
 const obtenerIMCTextoSpan = () => document.getElementById("imc-texto");
 const obtenerCirculo = () => document.getElementById("circulo");
 const obtenerImagen = () => document.getElementById("imagen");
+const obtenerLista = () => document.getElementById("lista");
+const obtenerPeso = () => document.getElementById("peso");
+const obtenerAltura = () => document.getElementById("altura");
 
 // Elimina el circulo de la imagen, si existe
 function resetImagen() {
@@ -72,8 +75,20 @@ function resetTextos() {
     }
 }
 
+function resetValues() {
+    let peso = obtenerPeso();
+    peso.value = "";
+
+    let altura = obtenerAltura();
+    altura.value = "";
+
+    peso.focus();
+
+}
+
 // Resetea el UI
 function resetUI() {
+    resetValues();
     resetTextos();
     resetImagen();
 }
@@ -104,6 +119,25 @@ function crearPuntoImagen(imc) {
     img.appendChild(circulo);
 
 
+}
+
+function aniadirListaUI(objeto) {
+
+    let lista = obtenerLista();
+
+    let h3imc = document.createElement("h3");
+    let h3imc_texto = document.createElement("h3");
+
+    h3imc.setAttribute("class", "column col-peso");
+    h3imc_texto.setAttribute("class", "column col-result");
+
+    h3imc.innerHTML = objeto.imc.toFixed(2);
+    h3imc_texto.innerHTML = objeto.imc_texto;
+
+    lista.appendChild(h3imc);
+    lista.appendChild(h3imc_texto);
+
+    console.log(lista)
 }
 
 // Calculos
@@ -148,8 +182,6 @@ function calcularIMC(e) {
 
     e.preventDefault();
 
-    resetUI();
-
     let h = altura();
     let p = peso();
 
@@ -171,6 +203,9 @@ function calcularIMC(e) {
 
     // Insertamos en el historico
     historia.push({ imc, imc_texto });
+    aniadirListaUI({ imc, imc_texto });
+
+    resetUI();
 
 }
 
@@ -180,4 +215,6 @@ function limpiarLista(e) {
 
     historia = [];
 
+    let lista = obtenerLista();
+    lista.textContent = "";
 }

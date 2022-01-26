@@ -114,6 +114,9 @@ img {
 
 .column {
     text-align: center;
+}
+
+.column-header {
     border-bottom: 1px black solid;
     margin: 0 3rem 0 3rem;
 }
