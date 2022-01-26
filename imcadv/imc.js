@@ -90,7 +90,7 @@ function resetValues() {
 function resetUI() {
     resetValues();
     resetTextos();
-    resetImagen();
+    //resetImagen();
 }
 
 // Coloca el valor de imc en el texto correspondiente
@@ -117,7 +117,6 @@ function crearPuntoImagen(imc) {
     circulo.setAttribute("class", `${clases} circulo`);
 
     img.appendChild(circulo);
-
 
 }
 
@@ -185,7 +184,7 @@ function calcularIMC(e) {
     let h = altura();
     let p = peso();
 
-    // Verificamos parametros, si alguno es cero mostramos error
+    // TODO: Verificamos parametros, si alguno es cero mostramos error
     if (h == 0 || p == 0) {
         return;
     }
@@ -218,6 +217,7 @@ function limpiarLista(e) {
     let lista = obtenerLista();
     lista.textContent = "";
 
+    resetImagen();
     resetUI();
 
 }
