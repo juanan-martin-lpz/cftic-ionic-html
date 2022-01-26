@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="imc.css">
+    <script src="imc.js"></script>
+    <title>IMC</title>
+</head>
+
+<body>
+    <h1>Calculo I.M.C.</h1>
+
+    <form>
+        <div class="field">
+            <label for="peso">Peso (Kg)</label>
+            <input type="number" name="peso" id="peso">
+        </div>
+        <div class="field">
+            <label for="altura">Altura (cm)</label>
+            <input type="number" name="altura" id="altura">
+        </div>
+        <button onclick="calcularIMC(event)">Calcular</button>
+    </form>
+    <hr/>
+
+    <div id="resultados" class="resultados hidden">
+        <div class="textos">
+            <h3>Su Indice de Masa Corporal es de <span id="imc"></span> </h3>
+            <h3>Vd. esta <span id="imc-texto"></span> </h3>
+        </div>
+
+        <!-- Imagen -->
+        <div id="imagen">
+            <img src="imc.jpg" alt="Imagen IMC">
+        </div>
+    </div>
+
+    <div id="historia" class="historia">
+        <div class="column col-peso">
+            <h3>Peso</h3>
+        </div>
+        <div class="column col-result">
+            <h3>Resultado</h3>
+        </div>
+    </div>
+</body>
+
+</html>

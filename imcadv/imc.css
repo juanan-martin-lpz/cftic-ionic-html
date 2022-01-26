@@ -1,0 +1,119 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+form,
+h1 {
+    margin: 0 auto;
+    width: 30rem;
+    padding-bottom: 2rem;
+}
+
+h1 {
+    padding-bottom: 2rem;
+}
+
+hr {
+    margin: 0 auto;
+    width: 75%;
+}
+
+.field {
+    display: grid;
+    grid-template-columns: 5rem 10rem;
+    padding-bottom: 0.5rem;
+}
+
+.field label {
+    grid-column: 1;
+}
+
+.field input {
+    grid-column: 2;
+}
+
+.resultados {
+    margin: 0 auto;
+    width: 50rem;
+}
+
+.resultados .textos {
+    margin: 0 auto;
+    width: 30rem;
+}
+
+img {
+    width: 100%;
+}
+
+#imagen {
+    margin: 0 auto;
+    position: relative;
+    width: 50rem;
+}
+
+.punto {
+    position: absolute;
+    z-index: 10;
+    background-color: blue;
+}
+
+.primero {
+    left: 10%;
+    top: 35%;
+}
+
+.segundo {
+    left: 27%;
+    top: 35%;
+}
+
+.tercero {
+    left: 44%;
+    top: 35%;
+}
+
+.cuarto {
+    left: 63%;
+    top: 35%;
+}
+
+.quinto {
+    left: 83%;
+    top: 35%;
+}
+
+.circulo {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 2px solid transparent;
+}
+
+.historia {
+    display: grid;
+    width: 50rem;
+    margin: 0 auto;
+    grid-template-columns: 50% 50%;
+}
+
+.column {
+    text-align: center;
+    border-bottom: 1px black solid;
+    margin: 0 3rem 0 3rem;
+}
+
+.col-peso {
+    grid-column: 1;
+}
+
+.col-result {
+    grid-column: 2;
+}
