@@ -217,4 +217,7 @@ function limpiarLista(e) {
 
     let lista = obtenerLista();
     lista.textContent = "";
+
+    resetUI();
+
 }
