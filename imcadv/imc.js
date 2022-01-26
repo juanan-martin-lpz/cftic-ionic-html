@@ -15,7 +15,12 @@
 
     Calculo de los valores de IMC a partir de los parametros de peso y altura,
     mostrando los valores numericos y textuales, acompañando con una imagen los
-    resultados
+    resultados.
+
+    Cada vez que se calcula un peso se añade a un contenedor y se muestra en el
+    div con id "historico".
+
+    Habra un boton para reiniciar la lista y los resultados
 
     ----------------------------------------------------------------------------
 
@@ -27,6 +32,9 @@
     Mostramos los datos
 
 */
+
+// Array para el historico
+let historia = [];
 
 // Lectura de datos
 const altura = () => document.getElementById("altura").value / 100;
@@ -160,5 +168,16 @@ function calcularIMC(e) {
     // Mostramos los datos
     setIMC(imc);
     setIMCText(imc_texto);
+
+    // Insertamos en el historico
+    historia.push({ imc, imc_texto });
+
+}
+
+// Limpiar el historico
+function limpiarLista(e) {
+    e.preventDefault();
+
+    historia = [];
 
 }
