@@ -20,9 +20,18 @@ h1 {
     text-align: center;
 }
 
+h2,
+h3 {
+    text-align: center;
+}
+
 hr {
     margin: 0 auto;
     width: 75%;
+}
+
+input {
+    padding: 4px 4px 4px 4px;
 }
 
 .field {
@@ -140,4 +149,6 @@ img {
     width: 50rem;
     margin: 0 auto;
     justify-content: flex-start;
+    padding-top: 2rem;
+    xs
 }

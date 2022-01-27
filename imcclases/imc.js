@@ -54,6 +54,15 @@ class Imc {
      * @param {number} altura 
      */
     constructor(peso, altura) {
+
+        if (peso == 0 || peso == 'undefined') {
+            throw "El peso debe ser mayor que cero";
+        }
+
+        if (altura == 0 || altura == 'undefined') {
+            throw "La altura debe ser mayor que cero";
+        }
+
         this.peso = peso;
         this.altura = altura;
     }
@@ -254,21 +263,30 @@ function calcularIMC(e) {
 
     resetUI();
 
-    let imc = new Imc(peso(), altura());
+    let imc;
 
-    // Seleccionamos la imagen
-    crearPuntoImagen(imc.imc());
+    try {
+        imc = new Imc(peso(), altura());
+        // Seleccionamos la imagen
+        crearPuntoImagen(imc.imc());
 
-    // Mostramos los datos
-    setIMC(imc.imc());
-    setIMCText(imc.imcTexto());
+        // Mostramos los datos
+        setIMC(imc.imc());
+        setIMCText(imc.imcTexto());
 
-    // Insertamos en el historico
-    historia.push(imc);
-    aniadirListaUI(imc);
+        // Insertamos en el historico
+        historia.push(imc);
+        aniadirListaUI(imc);
 
-    form().reset();
-    obtenerPeso().focus();
+    } catch (e) {
+        // Mostramos error
+        console.log(e)
+    } finally {
+        form().reset();
+        obtenerPeso().focus();
+
+    }
+
 
 }
 
@@ -296,14 +314,14 @@ function limpiarListaUI() {
 function ordenarImcAsc(e) {
     e.preventDefault();
 
-    ordena(compareImcAsc)
+    ordena(compareImcAsc);
 }
 
 function ordenarImcDesc(e) {
 
     e.preventDefault();
 
-    ordena(compareImcDesc)
+    ordena(compareImcDesc);
 
 }
 
