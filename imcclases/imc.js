@@ -280,7 +280,7 @@ function calcularIMC(e) {
 
     } catch (e) {
         // Mostramos error
-        console.log(e)
+        console.log(e);
     } finally {
         form().reset();
         obtenerPeso().focus();
