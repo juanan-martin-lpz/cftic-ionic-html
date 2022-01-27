@@ -111,11 +111,12 @@ const between = (a, b, valor) => valor >= a && valor < b;
 const greater = (a, valor) => valor > a;
 const lesser = (a, valor) => !greater(a, valor);
 
-
+// Funcion de ordenacion
 const sort = (coleccion, predicado) => coleccion.sort(predicado);
 
-const compareAsc = (a, b) => a.imc() - b.imc();
-const compareDesc = (a, b) => b.imc() - a.imc();
+// Predicados de ordenacion
+const compareImcAsc = (a, b) => a.imc() - b.imc();
+const compareImcDesc = (a, b) => b.imc() - a.imc();
 
 // Funciones del UI
 const obtenerPanelResultados = () => document.getElementById("resultados");
@@ -292,28 +293,27 @@ function limpiarListaUI() {
 
 }
 
-function ordenarAsc(e) {
+function ordenarImcAsc(e) {
     e.preventDefault();
 
-    let historia_ordenada = sort(historia, compareAsc);
+    ordena(compareImcAsc)
+}
+
+function ordenarImcDesc(e) {
+
+    e.preventDefault();
+
+    ordena(compareImcDesc)
+
+}
+
+function ordena(predicado) {
+
+    let historia_ordenada = sort(historia, pºredicado);
 
 
     // Pintamos la lista
     limpiarListaUI();
-
-    for (let item of historia_ordenada) {
-        aniadirListaUI(item);
-    }
-}
-
-function ordenarDesc(e) {
-
-    e.preventDefault();
-
-    let historia_ordenada = sort(historia, compareDesc);
-
-    // Pintamos la lista
-    limpiarLista(e);
 
     for (let item of historia_ordenada) {
         aniadirListaUI(item);
