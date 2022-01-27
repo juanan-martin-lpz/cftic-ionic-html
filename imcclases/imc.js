@@ -189,6 +189,7 @@ function crearPuntoImagen(imc) {
 
 function aniadirListaUI(objeto) {
 
+    console.log(objeto)
     let lista = obtenerLista();
 
     let h3imc = document.createElement("h3");
@@ -197,8 +198,8 @@ function aniadirListaUI(objeto) {
     h3imc.setAttribute("class", "column col-peso");
     h3imc_texto.setAttribute("class", "column col-result");
 
-    h3imc.innerHTML = objeto.imc.toFixed(2);
-    h3imc_texto.innerHTML = objeto.imc_texto;
+    h3imc.innerHTML = objeto.imc().toFixed(2);
+    h3imc_texto.innerHTML = objeto.imcTexto();
 
     lista.appendChild(h3imc);
     lista.appendChild(h3imc_texto);
@@ -274,8 +275,8 @@ function calcularIMC(e) {
     setIMCText(imc.imcTexto());
 
     // Insertamos en el historico
-    historia.push({ imc: imc.imc(), imc_texto: imc.imcTexto() });
-    aniadirListaUI({ imc: imc.imc(), imc_texto: imc.imcTexto() });
+    historia.push(imc);
+    aniadirListaUI(imc);
 
     form().reset();
     obtenerPeso().focus();
@@ -284,7 +285,7 @@ function calcularIMC(e) {
 
 // Limpiar el historico
 function limpiarLista(e) {
-    console.log("limpia")
+
     e.preventDefault();
 
     historia = [];
