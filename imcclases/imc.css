@@ -106,7 +106,7 @@ img {
 }
 
 .boton {
-    width: 5rem;
+    width: 7rem;
     height: 2rem;
     background-color: cornflowerblue;
     border: 1px solid cornflowerblue;
@@ -133,4 +133,11 @@ img {
 .panel {
     grid-column-start: 1;
     grid-column-end: 2;
+}
+
+.botonera {
+    display: flexbox;
+    width: 50rem;
+    margin: 0 auto;
+    justify-content: flex-start;
 }

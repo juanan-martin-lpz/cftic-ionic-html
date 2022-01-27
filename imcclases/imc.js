@@ -111,6 +111,12 @@ const between = (a, b, valor) => valor >= a && valor < b;
 const greater = (a, valor) => valor > a;
 const lesser = (a, valor) => !greater(a, valor);
 
+
+const sort = (coleccion, predicado) => coleccion.sort(predicado);
+
+const compareAsc = (a, b) => a.imc() - b.imc();
+const compareDesc = (a, b) => b.imc() - a.imc();
+
 // Funciones del UI
 const obtenerPanelResultados = () => document.getElementById("resultados");
 const obtenerIMCSpan = () => document.getElementById("imc");
@@ -162,7 +168,6 @@ function resetUI() {
 // Coloca el valor de imc en el texto correspondiente
 function setIMC(imc) {
     let imcspan = obtenerIMCSpan();
-    console.log(imc)
     imcspan.innerHTML = imc.toFixed(2);
 }
 
@@ -189,7 +194,6 @@ function crearPuntoImagen(imc) {
 
 function aniadirListaUI(objeto) {
 
-    console.log(objeto)
     let lista = obtenerLista();
 
     let h3imc = document.createElement("h3");
@@ -203,8 +207,6 @@ function aniadirListaUI(objeto) {
 
     lista.appendChild(h3imc);
     lista.appendChild(h3imc_texto);
-
-    console.log(lista)
 }
 
 // Calculos
@@ -251,20 +253,6 @@ function calcularIMC(e) {
 
     resetUI();
 
-    /*
-    let h = altura();
-    let p = peso();
-
-    // TODO: Verificamos parametros, si alguno es cero mostramos error
-    if (h == 0 || p == 0) {
-        return;
-    }
-
-    // Realizamos los calculos
-    let imc = obtenerIMC(h, p);
-    let imc_texto = obtenerIMCTexto(imc);
-    */
-
     let imc = new Imc(peso(), altura());
 
     // Seleccionamos la imagen
@@ -290,10 +278,44 @@ function limpiarLista(e) {
 
     historia = [];
 
+    limpiarListaUI();
+
+}
+
+function limpiarListaUI() {
+
     let lista = obtenerLista();
     lista.textContent = "";
 
     resetValues();
     resetUI();
 
+}
+
+function ordenarAsc(e) {
+    e.preventDefault();
+
+    let historia_ordenada = sort(historia, compareAsc);
+
+
+    // Pintamos la lista
+    limpiarListaUI();
+
+    for (let item of historia_ordenada) {
+        aniadirListaUI(item);
+    }
+}
+
+function ordenarDesc(e) {
+
+    e.preventDefault();
+
+    let historia_ordenada = sort(historia, compareDesc);
+
+    // Pintamos la lista
+    limpiarLista(e);
+
+    for (let item of historia_ordenada) {
+        aniadirListaUI(item);
+    }
 }
