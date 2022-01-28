@@ -398,20 +398,18 @@ function filtrarObesos(e) {
 
 function procesarLista(lista) {
 
-    let lista_imcs = [];
+    //let lista_imcs = [];
 
     // Pintamos la lista
     limpiarListaUI();
 
+    let { media_peso, media_altura } = calcularMedias(lista);
+
+    setMediaPeso(media_peso);
+    setMediaAltura(media_altura);
+
     for (let item of lista) {
-
-        lista_imcs.push(item);
-
-        let { media_peso, media_altura } = calcularMedias(lista_imcs);
-
-        setMediaPeso(media_peso);
-        setMediaAltura(media_altura);
-
         aniadirListaUI(item, media_peso, media_altura);
     }
+
 }
