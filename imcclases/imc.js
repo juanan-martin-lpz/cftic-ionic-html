@@ -134,6 +134,8 @@ const compareImcDesc = (a, b) => b.imc() - a.imc();
 const obtenerPanelResultados = () => document.getElementById("resultados");
 const obtenerIMCSpan = () => document.getElementById("imc");
 const obtenerIMCTextoSpan = () => document.getElementById("imc-texto");
+const obtenerMediaPeso = () => document.getElementById("media-peso");
+const obtenerMediaAltura = () => document.getElementById("media-altura");
 const obtenerCirculo = () => document.getElementById("circulo");
 const obtenerImagen = () => document.getElementById("imagen");
 const obtenerLista = () => document.getElementById("lista");
@@ -190,6 +192,19 @@ function setIMCText(imc_texto) {
     imcspan.innerHTML = imc_texto;
 }
 
+
+// Coloca el valor de la  media de peso texto correspondiente
+function setMediaPeso(media) {
+    let imcspan = obtenerMediaPeso();
+    imcspan.innerHTML = media.toFixed(2);
+}
+
+// Coloca el valor de la media de altura en el texto correspondiente
+function setMediaAltura(media) {
+    let imcspan = obtenerMediaAltura();
+    imcspan.innerHTML = media.toFixed(2);
+}
+
 // Crea el punto indicativo de l imagen 
 function crearPuntoImagen(imc) {
 
@@ -205,29 +220,29 @@ function crearPuntoImagen(imc) {
 
 }
 
-function aniadirListaUI(objeto, media_peso, media_altura) {
+function aniadirListaUI(objeto, media_peso = 0, media_altura = 0) {
 
     let lista = obtenerLista();
 
     let h3imc = document.createElement("h3");
     let h3imc_texto = document.createElement("h3");
-    let h3media = document.createElement("h3");
-    let h3altura = document.createElement("h3");
+    //let h3media = document.createElement("h3");
+    //let h3altura = document.createElement("h3");
 
     h3imc.setAttribute("class", "column col-peso");
     h3imc_texto.setAttribute("class", "column col-result");
-    h3media.setAttribute("class", "column col-mediapeso");
-    h3altura.setAttribute("class", "column col-mediaaltura");
+    //h3media.setAttribute("class", "column col-mediapeso");
+    //h3altura.setAttribute("class", "column col-mediaaltura");
 
     h3imc.innerHTML = objeto.imc().toFixed(2);
     h3imc_texto.innerHTML = objeto.imcTexto();
-    h3media.innerHTML = media_peso.toFixed(2);
-    h3altura.innerHTML = media_altura.toFixed(2);
+    //h3media.innerHTML = media_peso.toFixed(2);
+    //h3altura.innerHTML = media_altura.toFixed(2);
 
     lista.appendChild(h3imc);
     lista.appendChild(h3imc_texto);
-    lista.appendChild(h3media);
-    lista.appendChild(h3altura);
+    //lista.appendChild(h3media);
+    //lista.appendChild(h3altura);
 
 }
 
@@ -291,7 +306,10 @@ function calcularIMC(e) {
 
         let { media_peso, media_altura } = calcularMedias(historia);
 
-        aniadirListaUI(imc, media_peso, media_altura);
+        setMediaPeso(media_peso);
+        setMediaAltura(media_altura);
+
+        aniadirListaUI(imc);
 
     } catch (e) {
         // Mostramos error

@@ -65,7 +65,14 @@ img {
 #imagen {
     margin: 0 auto;
     position: relative;
+    width: 30rem;
+}
+
+.contenedor {
+    display: flex;
     width: 50rem;
+    margin: 0 auto;
+    justify-content: space-around;
 }
 
 .punto {
@@ -111,7 +118,8 @@ img {
     display: grid;
     width: 50rem;
     margin: 0 auto;
-    grid-template-columns: repeat(4, 1fr);
+    /* grid-template-columns: repeat(4, 1fr); */
+    grid-template-columns: repeat(2, 1fr);
 }
 
 .boton {
@@ -154,7 +162,8 @@ img {
 
 .panel {
     grid-column-start: 1;
-    grid-column-end: 5;
+    /* grid-column-end: 5; */
+    grid-column-end: 3;
 }
 
 .botonera {
