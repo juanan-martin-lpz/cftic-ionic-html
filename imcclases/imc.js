@@ -409,6 +409,9 @@ function procesarLista(lista) {
 
         let { media_peso, media_altura } = calcularMedias(lista_imcs);
 
+        setMediaPeso(media_peso);
+        setMediaAltura(media_altura);
+
         aniadirListaUI(item, media_peso, media_altura);
     }
 }
