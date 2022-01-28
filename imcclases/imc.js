@@ -97,6 +97,10 @@ class Imc {
         return result;
     }
 
+    isObeso() {
+        return greater(31, this.imc()) ? true : false;
+    }
+
     /**
      * Retorna el valor de imc calculado
      * 
@@ -105,15 +109,14 @@ class Imc {
     imc() {
         return this.calcularIMC();
     }
-
 }
 
 // Array para el historico
 let historia = [];
 
 // Lectura de datos
-const altura = () => document.getElementById("altura").value / 100;
-const peso = () => document.getElementById("peso").value;
+const altura = () => Number.parseFloat(document.getElementById("altura").value / 100);
+const peso = () => Number.parseInt(document.getElementById("peso").value);
 
 // Funciones generales
 const between = (a, b, valor) => valor >= a && valor < b;
@@ -202,21 +205,30 @@ function crearPuntoImagen(imc) {
 
 }
 
-function aniadirListaUI(objeto) {
+function aniadirListaUI(objeto, media_peso, media_altura) {
 
     let lista = obtenerLista();
 
     let h3imc = document.createElement("h3");
     let h3imc_texto = document.createElement("h3");
+    let h3media = document.createElement("h3");
+    let h3altura = document.createElement("h3");
 
     h3imc.setAttribute("class", "column col-peso");
     h3imc_texto.setAttribute("class", "column col-result");
+    h3media.setAttribute("class", "column col-mediapeso");
+    h3altura.setAttribute("class", "column col-mediaaltura");
 
     h3imc.innerHTML = objeto.imc().toFixed(2);
     h3imc_texto.innerHTML = objeto.imcTexto();
+    h3media.innerHTML = media_peso.toFixed(2);
+    h3altura.innerHTML = media_altura.toFixed(2);
 
     lista.appendChild(h3imc);
     lista.appendChild(h3imc_texto);
+    lista.appendChild(h3media);
+    lista.appendChild(h3altura);
+
 }
 
 // Calculos
@@ -276,7 +288,10 @@ function calcularIMC(e) {
 
         // Insertamos en el historico
         historia.push(imc);
-        aniadirListaUI(imc);
+
+        let { media_peso, media_altura } = calcularMedias(historia);
+
+        aniadirListaUI(imc, media_peso, media_altura);
 
     } catch (e) {
         // Mostramos error
@@ -327,13 +342,55 @@ function ordenarImcDesc(e) {
 
 function ordena(predicado) {
 
-    let historia_ordenada = sort(historia, pºredicado);
+    let historia_ordenada = sort(historia, predicado);
 
+    procesarLista(historia_ordenada);
+}
+
+function calcularMedias(lista) {
+
+    let lista_imcs = [];
+
+    let media_peso;
+    let media_altura;
+
+    for (let item of lista) {
+        lista_imcs.push(item);
+
+        media_peso = lista_imcs.reduce(function(suma, obj) {
+            return suma + obj.peso;
+        }, 0) / lista_imcs.length;
+
+        media_altura = lista_imcs.reduce(function(suma, obj) {
+            return suma + obj.altura;
+        }, 0) / lista_imcs.length;
+
+    }
+
+    return { media_peso, media_altura };
+
+}
+
+function filtrarObesos(e) {
+
+    let lista_obesos = historia.filter(item => item.isObeso());
+
+    procesarLista(lista_obesos);
+}
+
+function procesarLista(lista) {
+
+    let lista_imcs = [];
 
     // Pintamos la lista
     limpiarListaUI();
 
-    for (let item of historia_ordenada) {
-        aniadirListaUI(item);
+    for (let item of lista) {
+
+        lista_imcs.push(item);
+
+        let { media_peso, media_altura } = calcularMedias(lista_imcs);
+
+        aniadirListaUI(item, media_peso, media_altura);
     }
 }

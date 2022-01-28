@@ -111,7 +111,7 @@ img {
     display: grid;
     width: 50rem;
     margin: 0 auto;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: repeat(4, 1fr);
 }
 
 .boton {
@@ -120,6 +120,11 @@ img {
     background-color: cornflowerblue;
     border: 1px solid cornflowerblue;
     border-radius: 5px;
+    cursor: pointer;
+}
+
+.boton:hover {
+    border: 2px solid black;
 }
 
 .column {
@@ -139,9 +144,17 @@ img {
     grid-column: 2;
 }
 
+.col-mediapeso {
+    grid-column: 3;
+}
+
+.col-mediaaltura {
+    grid-column: 4;
+}
+
 .panel {
     grid-column-start: 1;
-    grid-column-end: 2;
+    grid-column-end: 5;
 }
 
 .botonera {
