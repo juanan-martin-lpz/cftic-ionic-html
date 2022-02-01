@@ -3,15 +3,14 @@ function getJoke() {
     let url = "https://api.chucknorris.io/jokes/random";
 
     fetch(url)
-        .then(res => res.text())
+        .then(res => res.json())
         .then(result => addJoke(result))
         .catch(err => console.log(err));
 
 }
 
-function addJoke(result) {
+function addJoke(json) {
 
-    let json = JSON.parse(result);
     let div = document.getElementById("contenido");
 
     let img = document.createElement("img");
